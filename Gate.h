@@ -5,8 +5,13 @@ class Wire;
 
 class Gate {
 public:
-	Gate(string t, int d, Wire* i1, Wire* i2, Wire* o);
-	string getType() const { return type; }
+	Gate(string t, int d, Wire* i1, Wire* i2, Wire* o); // constructor with 5 parameters
+	string getType() const { return type; } // access Type
+	int getDelay() const { return delay; } // access Delay
+
+
+
+
 private:
 	string type;
 	int delay;

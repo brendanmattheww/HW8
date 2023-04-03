@@ -7,3 +7,5 @@ Gate::Gate(string t, int d, Wire* i1, Wire* i2, Wire* o) {
 	in2 = i2;
 	out = o;
 }
+
+
