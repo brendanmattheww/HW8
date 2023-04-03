@@ -8,4 +8,18 @@ Gate::Gate(string t, int d, Wire* i1, Wire* i2, Wire* o) {
 	out = o;
 }
 
+string Gate::getType() const {
+	return type;
+}
 
+int Gate::getDelay() const {
+	return delay;
+}
+
+Wire* Gate::getInput(int) const {
+
+}
+
+Wire* Gate::getOutput() const {
+
+}
