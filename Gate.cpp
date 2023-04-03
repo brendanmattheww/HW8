@@ -35,8 +35,5 @@ Wire* Gate::getOutput() const {
 }
 
 Wire* Gate::returnVal(int val, string h) const {
-	Wire* w;
-	w->SetValue(val);
-	w->setHistory(h);
-	return w;
+	
 }
