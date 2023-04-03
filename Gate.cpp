@@ -20,7 +20,13 @@ int Gate::getDelay() const {
 }
 
 Wire* Gate::getInput(int inp) const {
-	Wire* w = (int *) inp;
+	Wire* w;
+	if (inp == 0) {
+		w = returnVal(inp, "0");
+	}
+	else if (inp == 1) {
+		w = returnVal(inp, "1");
+	}
 	return w;
 }
 
