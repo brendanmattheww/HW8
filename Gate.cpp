@@ -1,4 +1,5 @@
 #include "Gate.h"
+#include "Wire.h"
 
 Gate::Gate(string t, int d, Wire* i1, Wire* i2, Wire* o) {
 	type = t;
@@ -17,10 +18,24 @@ int Gate::getDelay() const {
 }
 
 Wire* Gate::getInput(int inp) const {
-	Wire* w = (int *) inp;
+	Wire* w;
+
+	if (inp == 0) {
+		w = returnVal(0,"0");
+	}
+	else if (inp == 1) {
+		w = returnVal(1,"1");
+	}
 	return w;
 }
 
 Wire* Gate::getOutput() const {
 	return out;
+}
+
+Wire* Gate::returnVal(int val, string h) const {
+	Wire* w;
+	w->SetValue(val);
+	w->setHistory(h);
+	return w;
 }
