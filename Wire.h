@@ -20,10 +20,10 @@ public:
 	void printHistory() const;
 
 private:
-	int value;		 // 0 or 1
-	string name;	 // ABC
+	int value;			  // 0 or 1
+	string name;		  // ABC
 	vector<Gate*> drives; // gate
-	int index;		 // wire number
-	string history;  // history of values (--__xx)
+	int index;			  // wire number
+	string history;		  // history of values (--__xx)
 
 };
