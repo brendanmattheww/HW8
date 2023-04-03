@@ -21,11 +21,11 @@ int Gate::getDelay() const {
 
 Wire* Gate::getInput(int inp) const {
 	Wire* w;
-	if (inp == 0) {
-		w = returnVal(inp, "0");
+	if (inp == 1) {
+		w = this->in1;
 	}
-	else if (inp == 1) {
-		w = returnVal(inp, "1");
+	if (inp == 2) {
+		w = this->in2;
 	}
 	return w;
 }
@@ -34,6 +34,28 @@ Wire* Gate::getOutput() const {
 	return out;
 }
 
-Wire* Gate::returnVal(int val, string h) const {
-	
+Wire* Gate::returnVal(int val, string h) const { 
+	if (type == "AND") {
+
+	}
+	else if (type == "NAND") {
+
+	}
+	else if (type == "OR") {
+
+	}
+	else if (type == "NOR") {
+
+	}
+	else if (type == "XOR") {
+
+	}
+	else if (type == "XNOR") {
+
+	}
+	else if (type == "NOT") {
+
+	}
+
+
 }
