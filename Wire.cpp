@@ -23,8 +23,22 @@ void Wire::printHistory() const {
 }
 
 //Getters
-int	 Wire:: GetValue() const		{ return value;   }
-string Wire::GetName() const		{ return name;    }
-vector<Gate*> Wire::GetGate() const { return drives;  }
-int Wire::GetIndex() const			{ return index;   }
-string Wire::GetHistory() const		{ return history; }
+int	 Wire:: GetValue() const { 
+	return value;   
+}
+
+string Wire::GetName() const { 
+	return name;    
+}
+
+vector<Gate*> Wire::GetGate() const { 
+	return drives;  
+}
+
+int Wire::GetIndex() const { 
+	return index;   
+}
+
+string Wire::GetHistory() const {
+	return history; 
+}
