@@ -16,10 +16,11 @@ int Gate::getDelay() const {
 	return delay;
 }
 
-Wire* Gate::getInput(int) const {
-
+Wire* Gate::getInput(int inp) const {
+	Wire* w = (int *) inp;
+	return w;
 }
 
 Wire* Gate::getOutput() const {
-
+	return out;
 }
