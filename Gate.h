@@ -14,5 +14,4 @@ private:
 	Wire* in2;
 	Wire* out;
 
-
 };
