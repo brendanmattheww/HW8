@@ -38,7 +38,7 @@ Wire* Gate::returnVal(int val, string h) const {
 	if (type == "AND") {
 
 	}
-	else if (type == "NAND") {
+	if (type = ) {
 
 	}
 	else if (type == "OR") {
