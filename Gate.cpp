@@ -18,6 +18,7 @@ int Gate::getDelay() const {
 
 Wire* Gate::getInput(int inp) const {
 	Wire* w = (int *) inp;
+	w.GetValue() = inp;
 	return w;
 }
 
