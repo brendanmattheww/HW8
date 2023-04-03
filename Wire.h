@@ -20,7 +20,7 @@ public:
 	void printHistory() const;
 
 private:
-	int value;
+	int value; 
 	string name;
 	vector<Gate*> drives;
 	int index;		 //wire number
