@@ -14,7 +14,7 @@ public:
 	Wire* getInput(int) const;
 	Wire* getOutput() const;
 	//Gate returnVal(string t, int d, Wire* i1, Wire* i2, Wire* o) const; // note: could be very wrong
-	Wire* returnVal(int val, string h) const;							  // note: could be very wrong
+	Wire* returnVal(Wire* in1, Wire* in2) const;							  // note: could be very wrong
 
 private:
 	string type;
