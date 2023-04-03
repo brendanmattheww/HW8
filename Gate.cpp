@@ -56,6 +56,4 @@ Wire* Gate::returnVal(int val, string h) const {
 	else if (type == "NOT") {
 
 	}
-
-
 }
