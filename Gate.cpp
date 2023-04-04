@@ -41,35 +41,46 @@ int ANDLogic(int inVal1, int inVal2) {  // Function that can be used for AND and
 	else if (inVal1 == 1 && inVal2 == 1) {
 		return 1;
 	}
-	else if ((inVal1 == -1 && (inVal2 == 1 || inVal2 == -1)) || (inVal1 == 1 && inVal2 == -1)) {
-		return -1;
+	return -1;
+}
+
+int ORLogic(int inVal1, int inVal2) {
+	if (inVal1 == 1 || inVal2 == 1) {
+		return 1;
 	}
+	else if (inVal1 == 0 && inVal2 == 0) {
+		return 0;
+	}
+	return -1;
+}
+
+int NOTLogic(int inVal) {
+	if (inVal == 1) {
+		return 0;
+	}
+	else if (inVal == 0) {
+		return 1;
+	}
+	return -1;
 }
 
 Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 	string history = "";
-	int outVal = -1;			  // 1 = high; 0 = low; -1 = unknown
+	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue(); // put wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
-	
-	
+		
 	if (type == "AND") {
 		outVal = ANDLogic(inVal1, inVal2);
 	}
 	else if (type == "NAND") {
-		outVal = ANDLogic(inVal1, inVal2);  // Nots AND Logic
-		if (outVal == 1) {
-			outVal = 0;
-		}
-		if (outVal == 0) {
-			outVal = 1;
-		}
+		outVal = NOTLogic(ANDLogic(inVal1, inVal2));  // Nots AND Logic
 	}
 	else if (type == "OR") {
-
+		outVal = ORLogic(inVal1, inVal2);
 	}
 	else if (type == "NOR") {
-
+		outVal = NOTLogic(ORLogic(inVal1, inVal2));
 	}
 	else if (type == "XOR") {
 
@@ -78,7 +89,7 @@ Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 
 	}
 	else if (type == "NOT") {
-
+		
 	}
 	Wire* out;				// creates a wire and sets it members
 	out->SetValue(outVal);

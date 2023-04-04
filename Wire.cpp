@@ -11,8 +11,8 @@ Wire::Wire(int v, string h) {
 int Wire::SetValue(int v) {
 	value = v;
 }
-string Wire::setHistory(string h) {
-	history = h;
+string Wire::setHistory(string h) { // appends the incoming string
+	history += h;
 }
 vector<Gate*> Wire::setDrives(vector<Gate*> d) {
 	drives = d;
