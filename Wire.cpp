@@ -23,7 +23,7 @@ void Wire::printHistory() const {
 }
 
 //Getters
-int	 Wire:: GetValue() const { 
+int	 Wire::GetValue() const { 
 	return value;   
 }
 

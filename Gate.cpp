@@ -35,10 +35,12 @@ Wire* Gate::getOutput() const {
 }
 
 Wire* Gate::returnVal(Wire* in1, Wire* in2) const { 
+	Wire* out(0, "");
 	if (type == "AND") {
-		if(in1->GetValue() == 0 || in2 =
+		if(in1->GetValue() == 0 || in2->GetValue() == 0) {
+
 	}
-	if(type == )
+	if (type == "NAND"){
 	
 	}
 	else if (type == "OR") {
