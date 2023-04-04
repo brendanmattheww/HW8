@@ -34,14 +34,36 @@ Wire* Gate::getOutput() const {
 	return out;
 }
 
-Wire* Gate::returnVal(Wire* in1, Wire* in2) const { 
-	Wire* out(0, "");
-	if (type == "AND") {
-		if(in1->GetValue() == 0 || in2->GetValue() == 0) {
-
+int ANDLogic(int inVal1, int inVal2) {  // Function that can be used for AND and NAND logic
+	if (inVal1 == 0 || inVal2 == 0) {
+		return 0;
 	}
-	if (type == "NAND"){
+	else if (inVal1 == 1 && inVal2 == 1) {
+		return 1;
+	}
+	else if ((inVal1 == -1 && (inVal2 == 1 || inVal2 == -1)) || (inVal1 == 1 && inVal2 == -1)) {
+		return -1;
+	}
+}
+
+Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
+	string history = "";
+	int outVal = -1;			  // 1 = high; 0 = low; -1 = unknown
+	int inVal1 = in1->GetValue(); // put wire values into integers for simplicity
+	int inVal2 = in2->GetValue();
 	
+	
+	if (type == "AND") {
+		outVal = ANDLogic(inVal1, inVal2);
+	}
+	else if (type == "NAND") {
+		outVal = ANDLogic(inVal1, inVal2);  // Nots AND Logic
+		if (outVal == 1) {
+			outVal = 0;
+		}
+		if (outVal == 0) {
+			outVal = 1;
+		}
 	}
 	else if (type == "OR") {
 
@@ -58,4 +80,10 @@ Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 	else if (type == "NOT") {
 
 	}
+	Wire* out;				// creates a wire and sets it members
+	out->SetValue(outVal);
+	out->setHistory(history);
+	return out;
 }
+
+	

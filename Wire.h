@@ -20,7 +20,7 @@ public:
 	void printHistory() const;
 
 private:
-	int value;			  // 0 or 1
+	int value;			  // // 1 = high;  0 = low;  -1 = unknown
 	string name;		  // ABC
 	vector<Gate*> drives; // gate
 	int index;			  // wire number
