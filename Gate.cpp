@@ -74,7 +74,7 @@ int NOTLogic(int inVal) {
 	return -1;
 }
 
-Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
+Wire* Gate::returnVal() const {
 	Wire* out;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
@@ -109,7 +109,7 @@ Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 		out->setHistory("-");
 	}
 	else if (outVal == 0) {
-		out->setHistory("_"); ;
+		out->setHistory("_");
 	}
 	else {
 		out->setHistory("x");
