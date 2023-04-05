@@ -54,6 +54,16 @@ int ORLogic(int inVal1, int inVal2) {
 	return -1;
 }
 
+int XORLogic(int inVal1, int inVal2) {
+	if ((inVal1 == 1 && inVal2 == 1) || (inVal1 == 0 && inVal2 == 0)) {
+		return 0;
+	}
+	else if ((inVal1 == 1 && inVal2 == 0) || (inVal1 == 0 && inVal2 == 1)) {
+		return 1;
+	}
+	return -1;
+}
+
 int NOTLogic(int inVal) {
 	if (inVal == 1) {
 		return 0;
@@ -65,9 +75,9 @@ int NOTLogic(int inVal) {
 }
 
 Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
-	string history = "";
+	Wire* out;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
-	int inVal1 = in1->GetValue(); // put wire values into integers for simplicity
+	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
 		
 	if (type == "AND") {
@@ -83,17 +93,28 @@ Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 		outVal = NOTLogic(ORLogic(inVal1, inVal2));
 	}
 	else if (type == "XOR") {
-
+		outVal = XORLogic(inVal2, inVal2);
 	}
 	else if (type == "XNOR") {
-
+		outVal = NOTLogic(XORLogic(inVal2, inVal2));
 	}
 	else if (type == "NOT") {
-		
+		outVal = NOTLogic(inVal1); // Just takes in in1
 	}
-	Wire* out;				// creates a wire and sets it members
+	
+	// sets wire members
 	out->SetValue(outVal);
-	out->setHistory(history);
+
+	if (outVal == 1) {
+		out->setHistory("-");
+	}
+	else if (outVal == 0) {
+		out->setHistory("_"); ;
+	}
+	else {
+		out->setHistory("x");
+	}
+	
 	return out;
 }
 
