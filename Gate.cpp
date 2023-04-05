@@ -109,7 +109,7 @@ Wire* Gate::returnVal(Wire* in1, Wire* in2) const {
 		out->setHistory("-");
 	}
 	else if (outVal == 0) {
-		out->setHistory("_"); ;
+		out->setHistory("_");
 	}
 	else {
 		out->setHistory("x");
