@@ -8,14 +8,14 @@ Wire::Wire(int v, string h) {
 }
 
 //Setters
-int Wire::SetValue(int v) {
+void Wire::SetValue(int v) {
 	value = v;
 }
-string Wire::setHistory(string h) { // appends the incoming string
+void Wire::setHistory(string h) { // appends the incoming string
 	history += h;
 }
-vector<Gate*> Wire::setDrives(vector<Gate*> d) {
-	drives = d;
+void Wire::setDrives(vector<Gate*> d, Gate* i) {
+	d.push_back(i);
 }
 
 void Wire::printHistory() const {

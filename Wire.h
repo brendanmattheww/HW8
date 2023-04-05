@@ -7,9 +7,9 @@ class Gate;
 class Wire {
 public:
 	Wire(int v, string h);
-	int SetValue(int v);
-	string setHistory(string h);
-	vector<Gate*> setDrives(vector<Gate*> d);
+	void SetValue(int v);
+	void setHistory(string h);
+	void setDrives(vector<Gate*> d, Gate* i);
 
 	int GetValue() const		   { return value;   }
 	string GetName() const		   { return name;    }
