@@ -9,7 +9,7 @@ public:
 	Wire(int v, string h);
 	void SetValue(int v);
 	void setHistory(string h);
-	void setDrives(vector<Gate*> d, Gate* i);
+	void addGate(Gate* i);
 
 	int GetValue() const		   { return value;   }
 	string GetName() const		   { return name;    }

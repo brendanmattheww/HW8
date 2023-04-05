@@ -14,8 +14,8 @@ void Wire::SetValue(int v) {
 void Wire::setHistory(string h) { // appends the incoming string
 	history += h;
 }
-void Wire::setDrives(vector<Gate*> d, Gate* i) {
-	d.push_back(i);
+void Wire::addGate(Gate* i) {
+	drives.push_back(i);
 }
 
 void Wire::printHistory() const {
