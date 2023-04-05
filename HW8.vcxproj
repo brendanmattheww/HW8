@@ -127,10 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="Gate.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Wire.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Wire.h" />
   </ItemGroup>
