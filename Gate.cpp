@@ -79,6 +79,10 @@ Wire* Gate::Evaluate() const {
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
+
+	vector<int> pos;
+	vector<int> neg;
+	vector<int> unknown;
 		
 	if (type == "AND") {
 		outVal = ANDLogic(inVal1, inVal2);
@@ -106,13 +110,13 @@ Wire* Gate::Evaluate() const {
 	out->SetValue(outVal);
 
 	if (outVal == 1) {
-		out->setHistory("-");
+		out->setHistory(1, pos);
 	}
 	else if (outVal == 0) {
-		out->setHistory("_");
+		out->setHistory(0, neg);
 	}
 	else {
-		out->setHistory("x");
+		out->setHistory(-1, unknown);
 	}
 	
 	return out;
