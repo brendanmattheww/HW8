@@ -10,9 +10,9 @@ Wire::Wire(int v, string h) {
 //Setters
 void Wire::SetValue(int v) {
 	value = v;
-}
+}								  // parms int time, int value
 void Wire::setHistory(string h) { // appends the incoming string
-	history += h;
+	history += h;				  // may need to change this to take into account time
 }
 void Wire::addGate(Gate* i) {
 	drives.push_back(i);
