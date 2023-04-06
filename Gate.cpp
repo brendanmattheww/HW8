@@ -80,8 +80,8 @@ Wire* Gate::Evaluate() const {
 	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
 
-	vector<int> pos;
-	vector<int> neg;
+	vector<int> high;
+	vector<int> low;
 	vector<int> unknown;
 		
 	if (type == "AND") {
@@ -110,10 +110,10 @@ Wire* Gate::Evaluate() const {
 	out->SetValue(outVal);
 
 	if (outVal == 1) {
-		out->setHistory(1, pos);
+		out->setHistory(1, high);
 	}
 	else if (outVal == 0) {
-		out->setHistory(0, neg);
+		out->setHistory(0, low);
 	}
 	else {
 		out->setHistory(-1, unknown);
