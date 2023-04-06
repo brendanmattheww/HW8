@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 //default constructor
-Wire::Wire(int v, string h) {
+Wire::Wire(int v, vector<int> h) {
 	value = v;
 	history = h;
 }
@@ -10,16 +10,28 @@ Wire::Wire(int v, string h) {
 //Setters
 void Wire::SetValue(int v) {
 	value = v;
-}								  // parms int time, int value
-void Wire::setHistory(string h) { // appends the incoming string
-	history += h;				  // may need to change this to take into account time
+}
+void Wire::setHistory(int v, vector<int> h) { // appends the incoming string
+	h.push_back(v);
+	history = h;
 }
 void Wire::addGate(Gate* i) {
 	drives.push_back(i);
 }
 
 void Wire::printHistory() const {
-	cout << history;
+	
+	for (int i = 0; i < history.size(); i++) {
+		if (history.at(i) == 0) { // will need to account for delays and
+			cout << "_";		  // times at which the 1 or 0 doesn't change
+		}
+		if (history.at(i) == 1) {
+			cout << "-";
+		}
+		if (history.at(i) == -1) {
+			cout << "X";
+		}
+	}
 }
 
 //Getters
@@ -39,6 +51,6 @@ int Wire::GetIndex() const {
 	return index;   
 }
 
-string Wire::GetHistory() const {
+vector<int> Wire::GetHistory() const {
 	return history; 
 }

@@ -13,7 +13,7 @@ public:
 	int getDelay() const { return delay; }
 	Wire* getInput(int) const;
 	Wire* getOutput() const;
-	Wire* Evaluate() const;	// note: could be very wrong
+	Wire* Evaluate() const;
 
 private:
 	string type; // gate type
