@@ -1,4 +1,2 @@
 #include "Event.h"
-class Event {
-
-};
+class Event;

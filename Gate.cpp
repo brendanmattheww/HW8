@@ -20,7 +20,7 @@ int Gate::getDelay() const {
 }
 
 Wire* Gate::getInput(int inp) const {
-	Wire* w;
+	Wire* w = nullptr;
 	if (inp == 1) {
 		w = this->in1;
 	}
@@ -75,7 +75,7 @@ int NOTLogic(int inVal) {
 }
 
 Wire* Gate::Evaluate() const {
-	Wire* out;					  // makes wire named out
+	Wire* out = nullptr;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
@@ -110,13 +110,13 @@ Wire* Gate::Evaluate() const {
 	out->SetValue(outVal);
 
 	if (outVal == 1) {
-		out->setHistory(1, high);
+		out->setHistory(1, 1);
 	}
 	else if (outVal == 0) {
-		out->setHistory(0, low);
+		out->setHistory(0, 1);
 	}
 	else {
-		out->setHistory(-1, unknown);
+		out->setHistory(-1, 1);
 	}
 	
 	return out;

@@ -8,14 +8,14 @@ class Wire {
 public:
 	Wire(int v, vector<int> h);
 	void SetValue(int v);
-	void setHistory(int v, vector<int> h);
+	void setHistory(int v, int time);
 	void addGate(Gate* i);
 
-	int GetValue() const		   { return value;   }
-	string GetName() const		   { return name;    }
-	vector<Gate*> GetGate() const  { return drives;  }
-	int GetIndex() const		   { return index;   }
-	vector<int> GetHistory() const { return history; }
+	int GetValue() const; //{ return value;   }
+	string GetName() const; //{ return name;    }
+	vector<Gate*> GetGate() const; //{ return drives;  }
+	int GetIndex() const; //{ return index;   }
+	vector<int> GetHistory() const; //{ return history; }
 
 	void printHistory() const;
 
