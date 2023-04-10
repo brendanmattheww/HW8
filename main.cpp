@@ -13,8 +13,8 @@ using namespace std;
 int main(){
 
 	/*
-	readCircuitDesc(circDesc, gates, wires);
-	readVectorDesc(vecDesc, wires, q);
+	readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
+	readVectorDesc(vecDesc, wires, q);			in class
 	simulate(gates, wires, q);
 	printResults(wires, maxtime);
 	
