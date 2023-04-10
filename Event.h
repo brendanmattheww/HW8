@@ -7,8 +7,8 @@ using namespace std;
 
 class Event { // work in progress
 public:
-	void readCircDesc(string cd, string gates, Wire* w);
-	void readVecDesc(string vd, Wire* w, string q);
+	bool readCircDesc(string cd, string gates, Wire* w);
+	bool readVecDesc(string vd, Wire* w, string q);
 	int simulate(string gates, Wire* w, string q);
 	void printResults(Wire* w, int max);
 private:

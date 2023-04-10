@@ -1,10 +1,10 @@
 #include "Event.h"
 
-void Event::readCircDesc(string cd, string gates, Wire* w) {
+bool Event::readCircDesc(string cd, string gates, Wire* w) {
 
 }
 
-void Event::readVecDesc(string vd, Wire* w, string q) {
+bool Event::readVecDesc(string vd, Wire* w, string q) {
 
 }
 
