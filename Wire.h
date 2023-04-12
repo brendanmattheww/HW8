@@ -11,11 +11,11 @@ public:
 	void setHistory(int v, int time);
 	void addGate(Gate* i);
 
-	int GetValue() const; //{ return value;   }
-	string GetName() const; //{ return name;    }
-	vector<Gate*> GetGate() const; //{ return drives;  }
-	int GetIndex() const; //{ return index;   }
-	vector<int> GetHistory() const; //{ return history; }
+	int GetValue() const; 
+	string GetName() const; 
+	vector<Gate*> GetGate() const; 
+	int GetIndex() const; 
+	vector<int> GetHistory() const; 
 
 	void printHistory() const;
 
