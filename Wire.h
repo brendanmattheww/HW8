@@ -6,16 +6,16 @@ class Gate;
 
 class Wire {
 public:
-	Wire(int v, vector<int> h);
+	Wire(int v, string n, int ind);
 	void SetValue(int v);
 	void setHistory(int v, int time);
 	void addGate(Gate* i);
 
-	int GetValue() const; 
-	string GetName() const; 
-	vector<Gate*> GetGate() const; 
-	int GetIndex() const; 
-	vector<int> GetHistory() const; 
+	int GetValue() const;           //{ return value;   }
+	string GetName() const;         //{ return name;    }
+	vector<Gate*> GetGate() const;  //{ return drives;  }
+	int GetIndex() const;           //{ return index;   }
+	vector<int> GetHistory() const; //{ return history; }
 
 	void printHistory() const;
 
@@ -24,6 +24,6 @@ private:
 	string name;			// ABC
 	vector<Gate*> drives;	// gate
 	int index;				// wire number
-	vector<int> history;  // history of values (--__xx)
+	vector<int> history;    // history of values (--__xx)
 
 };

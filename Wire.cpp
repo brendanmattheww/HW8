@@ -2,18 +2,19 @@
 #include <iostream>
 using namespace std;
 //default constructor
-Wire::Wire(int v, vector<int> h) {
+Wire::Wire(int v, string n, int ind) {
 	value = v;
-	history = h;
+	name = n;
+	index = ind;
 }
 
 //Setters
 void Wire::SetValue(int v) {
 	value = v;
 }
-void Wire::setHistory(int v, int time) { // appends the incoming string
-										 // time is the time the value changes
-	for (int i = 0; i < time - history.size(); i++) {     // pushes value for as long as it is the same
+void Wire::setHistory(int v, int time) {                   // appends the incoming string
+										                   // time is the time the value changes
+	for (int i = 0; i < time - history.size(); i++) {      // pushes value for as long as it is the same
 		history.push_back(v);
 	}
 }
