@@ -15,4 +15,7 @@ private:
 	string circDesc; // could be different
 	string vecDesc;  // data types
 	string queue;    // 
+	int time;		 // time ns
+	int count;		 // count
+	int oVal = -1;	 // output state
 };
