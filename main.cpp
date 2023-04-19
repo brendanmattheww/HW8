@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <queue>
-
+#include <sstream>
 #include "Event.h"
 #include "Gate.h"
 #include "Wire.h"
@@ -12,8 +12,9 @@
 using namespace std;
 
 int main(){
+	string currLine = ""; // First line 
 	string fileName = "";
-	ofstream circuitFile;
+	ifstream circuitFile;
 	
 	circuitFile.open(fileName);
 	
@@ -22,7 +23,20 @@ int main(){
 	}
 
 	while(!circuitFile.eof()) {
-		getline(cin, )
+		getline(circuitFile, currLine);
+		if (currLine.substr(0, currLine.find("")) == "INPUT") {
+			stringstream ss(currLine);
+			string wireName = "";
+			string wireNumber = "";
+			ss >> wireName;
+			ss >> wireNumber;
+			Wire inputWire(-1, wireName, stoi(wireNumber));
+		}
+		
+		
+		
+
+
 	}
 	
 
