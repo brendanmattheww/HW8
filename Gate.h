@@ -9,8 +9,8 @@ public:
 	Gate(string t, int d, Wire* i1, Wire* i2, Wire* o);
 	
 	// Accessors
-	string getType() const; //{ return type; }
-	int getDelay() const; //{ return delay; }
+	string getType() const; 
+	int getDelay() const; 
 	Wire* getInput(int) const;
 	Wire* getOutput() const;
 	Wire* Evaluate() const;
