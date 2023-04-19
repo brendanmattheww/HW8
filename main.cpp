@@ -1,4 +1,4 @@
-#include <ostream>
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -11,13 +11,14 @@
 using namespace std;
 
 int main(){
-
-	/*
-	readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
-	readVectorDesc(vecDesc, wires, q);			in class
-	simulate(gates, wires, q);
-	printResults(wires, maxtime);
+	ofstream file;
+	file.open();
 	
-	*/
+	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
+	//readVectorDesc(vecDesc, wires, q);			in class
+	//simulate(gates, wires, q);
+	//printResults(wires, maxtime);
+	
+	
 	return 0;
 }
