@@ -7,6 +7,7 @@
 #include "Event.h"
 #include "Gate.h"
 #include "Wire.h"
+#include "main.h"
 
 using namespace std;
 
@@ -30,7 +31,6 @@ int main(){
 	//readVectorDesc(vecDesc, wires, q);			in class
 	//simulate(gates, wires, q);
 	//printResults(wires, maxtime);
-	
 	
 	return 0;
 }
