@@ -7,6 +7,7 @@
 #include "Event.h"
 #include "Gate.h"
 #include "Wire.h"
+#include "main.h"
 
 using namespace std;
 
@@ -19,6 +20,21 @@ int main(){
 	//simulate(gates, wires, q);
 	//printResults(wires, maxtime);
 	
+	bool MainFunctions::readCircDesc(string cd, string gates, Wire * w) {
+
+	}
+
+	bool MainFunctions::readVecDesc(string vd, Wire * w, string q) {
+
+	}
+
+	int MainFunctions::simulate(string gates, Wire * w, string q) {
+
+	}
+
+	void MainFunctions::printResults(Wire * w, int max) {
+
+	}
 	
 	return 0;
 }
