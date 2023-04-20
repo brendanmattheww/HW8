@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 //default constructor
-Wire::Wire(int v, string n, int ind) {
+Wire::Wire(int v, string n, int ind) { 
 	value = v;
 	name = n;
 	index = ind;

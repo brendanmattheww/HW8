@@ -16,7 +16,7 @@ int main(){
 	string fileName = "";
 	ifstream circuitFile;
 	vector<Wire*> vecWire;
-	vecWire[0] = nullptr;
+	vecWire.push_back(nullptr);
 	
 	circuitFile.open(fileName);
 	
@@ -49,12 +49,18 @@ int main(){
 
 		else if (firstWord != "CIRCUIT") {
 			stringstream ss(currLine);
-			string gateType = firstWord;
 			string gateDelay = "";
-
+			string wire = "";
+			int wn = 0;
+			int delay = 0;
+			vector<int> wireInts;
 			ss >> gateDelay;
-			ss >> 
-			Gate currGate(gateType, )
+			ss >> wire;
+			wn = stoi(wire);
+			wireInts.push_back(wn);
+			string gateType = firstWord;
+			delay = stoi(gateDelay.substr(0, gateDelay.length() - 2));
+			Gate currGate(gateType, delay, vecWire.at(wireInts.at(0)), )
 		}
 		
 
