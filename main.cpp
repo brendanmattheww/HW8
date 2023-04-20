@@ -15,6 +15,8 @@ int main(){
 	string currLine = ""; // First line 
 	string fileName = "";
 	ifstream circuitFile;
+	vector<Wire*> vecWire;
+	vecWire[0] = nullptr;
 	
 	circuitFile.open(fileName);
 	
@@ -24,7 +26,8 @@ int main(){
 
 	while(!circuitFile.eof()) {
 		getline(circuitFile, currLine);
-		string firstWord = currLine.substr(0, currLine.find(""));
+		string firstWord = currLine.substr(0, currLine.find("")); \
+		Wire* inpw;
 		
 		if (firstWord == "INPUT" || firstWord == "OUTPUT") {
 			stringstream ss(currLine);
@@ -33,19 +36,26 @@ int main(){
 			ss >> wireName;
 			ss >> wireNumber;
 			Wire inputWire(-1, wireName, stoi(wireNumber));
+			inpw = &inputWire;
+			int wn = stoi(wireNumber);
+
+			if (wn > vecWire.size()) {
+				for (int i = 0; i < wn - vecWire.size(); i++) {
+					vecWire.push_back(nullptr);
+				}
+			}
+			vecWire.push_back(inpw);
 		}
 
 		else if (firstWord != "CIRCUIT") {
 			stringstream ss(currLine);
 			string gateType = firstWord;
 			string gateDelay = "";
-			
+
 			ss >> gateDelay;
 			ss >> 
 			Gate currGate(gateType, )
 		}
-		
-		
 		
 
 
