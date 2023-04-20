@@ -1,12 +1,12 @@
 #pragma once
-#include "main.cpp"
+//#include "main.cpp"
 
 string circDesc; // could be different
 string vecDesc;  // data types
 string queue;    // 
 
 
-bool readCircDesc(string cd, string gates, Wire* w) {
+/*bool readCircDesc(string cd, string gates, Wire* w) {		doesn't compile
 
 }
 
@@ -21,3 +21,4 @@ int simulate(string gates, Wire* w, string q) {
 void printResults(Wire* w, int max) {
 
 }
+*/

@@ -11,24 +11,28 @@
 
 using namespace std;
 
-int main(){
+int main() {
 	string currLine = ""; 
 	string fileName = "";
 	vector<Wire*> vecWires;
 	vector<Gate*> vecGates;
 	vector<int> wireInts;
-	vecWires.push_back(nullptr);
+		vecWires.push_back(nullptr);
 	
+	ifstream circuitFile;
+	cout << "Enter circuit description file name" << endl;
+	cin >> fileName;
 	circuitFile.open(fileName);
 	
 	if (!circuitFile) {
 		cerr << "File did not open" << endl;
 	}
-
+	else {
+		cout << "file opened" << endl;
+	}
 	while(!circuitFile.eof()) {
 		getline(circuitFile, currLine);
-		string firstWord = currLine.substr(0, currLine.find("")); \
-		Wire* inpw;
+		string firstWord = currLine.substr(0, currLine.find("")); 
 		
 		if (firstWord == "INPUT" || firstWord == "OUTPUT") {
 			stringstream ss(currLine);
@@ -74,6 +78,7 @@ int main(){
 
 	}
 	circuitFile.close();
+	cout << "file closed" << endl;
 
 	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
 	//readVectorDesc(vecDesc, wires, q);			in class
