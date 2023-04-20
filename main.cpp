@@ -24,7 +24,9 @@ int main(){
 
 	while(!circuitFile.eof()) {
 		getline(circuitFile, currLine);
-		if (currLine.substr(0, currLine.find("")) == "INPUT") {
+		string firstWord = currLine.substr(0, currLine.find(""));
+		
+		if (firstWord == "INPUT" || firstWord == "OUTPUT") {
 			stringstream ss(currLine);
 			string wireName = "";
 			string wireNumber = "";
