@@ -14,7 +14,6 @@ using namespace std;
 int main(){
 	string currLine = ""; 
 	string fileName = "";
-	ifstream circuitFile;
 	vector<Wire*> vecWires;
 	vector<Gate*> vecGates;
 	vector<int> wireInts;
