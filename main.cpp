@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <ostream>
+#include <ostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -24,7 +24,7 @@ int main() {
 	ifstream circuitFile;
 	cout << "Enter circuit description file name" << endl;
 	cin >> fileName;
-	circuitFile.open(fileName);
+	circuitFile.open("circuit"+ fileName + ".txt");  // now you only have to type the number in
 	
 	if (!circuitFile) {
 		cerr << "File did not open" << endl;
@@ -33,62 +33,73 @@ int main() {
 		cout << "file opened" << endl;
 	}
 
-	getline(circuitFile, currLine);
+	//getline(circuitFile, currLine);
 	while(!circuitFile.eof()) {
 		getline(circuitFile, currLine);
-		string firstWord = currLine.substr(0, currLine.find(" ")); 
+		//string firstWord = currLine.substr(0, currLine.find(" ")); 
 		
-		
+		//For everything
+		string firstWord = "";
+		int wireNum = 0;
+
+		//for INPUT / OUTPUT
+		string wireName = "";
+		string wireNumber = "";
+
+		//For Gates
+		string gateDelay = "";
+		string wire = "";
+		int delay = 0;
+
+		stringstream ss(currLine);
+		ss >> firstWord;
 		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
 			
-			stringstream ss(currLine);
-			string firstWord = "";
-			string wireName = "";
-			string wireNumber = "";
 			
-			ss >> firstWord;
+			//string firstWord = "";
+			
+			
+			//ss >> firstWord;
 			ss >> wireName;
 			ss >> wireNumber;
-			Wire inputWire(-1, wireName, stoi(wireNumber));
-			int wn = stoi(wireNumber);
+			wireNum = stoi(wireNumber);
+			Wire inputWire(-1, wireName, wireNum);
 
-			if (wn > vecWires.size()) {
-				for (int i = 0; i < wn - vecWires.size(); i++) {
+			if (wireNum > vecWires.size()) {    //not initializing with 
+				for (int i = 0; i < wireNum - vecWires.size(); i++) {
 					vecWires.push_back(nullptr);
 				}
 			}
-			vecWires.push_back(&inputWire); // took out the line where inpw = &inputWire and just did it in the push_back
+			vecWires.push_back(&inputWire); // not initializing 3 unique wires, they all have index 3 and no name
 		}
 		
 		else if (firstWord != "CIRCUIT") {
-			stringstream ss(currLine);
-			string gateDelay = "";
-			string wire = "";
-			int wireNum = 0;
-			string firstWord = "";
+			//stringstream ss(currLine);
+			
+			//string firstWord = "";
 			//int wn = 0;
-			int delay = 0;
-			ss >> firstWord;
+			
+			//ss >> firstWord;
+			string gateType = firstWord;
+
 			ss >> gateDelay;
-			for (int i = 0; i < 3; i++) {
+			delay = stoi(gateDelay.substr(0, gateDelay.length() - 2));
+
+			for (int i = 0; i < 3; i++) {		// puts the three wires into a vector so they can be used to initialize the gate
 				ss >> wire;
 				wireNum = stoi(wire);
 				wireInts.push_back(wireNum);
 				Wire* currWire = vecWires.at(wireInts.at(wireNum - 1));
-				tempWires.push_back(currWire);
+				tempWires.push_back(currWire);				
 			}
-			string gateType = firstWord;
-			delay = stoi(gateDelay.substr(0, gateDelay.length() - 2));
 			
-			
-			
-			if (tempWires.size() == 3) {   // need to check for NOT gate
+			if (tempWires.size() == 3) {					// need to check for NOT gate
 				Gate currGate(gateType, delay, tempWires.at(0), tempWires.at(1), tempWires.at(2));
 				vecGates.push_back(&currGate);
 				tempWires.at(0)->addGate(&currGate);		// Tells the wires which gate they are driving
 				tempWires.at(1)->addGate(&currGate);
 			}
-										// puts the gates into the vector
+															
 			
 		}
 		
