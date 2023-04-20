@@ -12,12 +12,13 @@
 using namespace std;
 
 int main(){
-	string currLine = ""; // First line 
+	string currLine = ""; 
 	string fileName = "";
 	ifstream circuitFile;
-	vector<Wire*> vecWire;
+	vector<Wire*> vecWires;
+	vector<Gate*> vecGates;
 	vector<int> wireInts;
-	vecWire.push_back(nullptr);
+	vecWires.push_back(nullptr);
 	
 	circuitFile.open(fileName);
 	
@@ -37,15 +38,14 @@ int main(){
 			ss >> wireName;
 			ss >> wireNumber;
 			Wire inputWire(-1, wireName, stoi(wireNumber));
-			inpw = &inputWire;
 			int wn = stoi(wireNumber);
 
-			if (wn > vecWire.size()) {
-				for (int i = 0; i < wn - vecWire.size(); i++) {
-					vecWire.push_back(nullptr);
+			if (wn > vecWires.size()) {
+				for (int i = 0; i < wn - vecWires.size(); i++) {
+					vecWires.push_back(nullptr);
 				}
 			}
-			vecWire.push_back(inpw);
+			vecWires.push_back(&inputWire); // took out the line where inpw = &inputWire and just did it in the push_back
 		}
 
 		else if (firstWord != "CIRCUIT") {
@@ -61,14 +61,20 @@ int main(){
 			wireInts.push_back(wn);
 			string gateType = firstWord;
 			delay = stoi(gateDelay.substr(0, gateDelay.length() - 2));
-			Gate currGate(gateType, delay, vecWire.at(wireInts.at(0)), vecWire.at(wireInts.at(1)), vecWire.at(wireInts.at(3)));
+
+			Wire* Wire1 = vecWires.at(wireInts.at(0));
+			Wire* Wire2 = vecWires.at(wireInts.at(1));
+			Wire* Wire3 = vecWires.at(wireInts.at(3));
+			Gate currGate(gateType, delay, Wire1, Wire2, Wire3);
+			vecGates.push_back(&currGate);	// puts the gates into the vector
+			Wire1->addGate(&currGate);		// Tells the wires which gate they are driving
+			Wire2->addGate(&currGate);
 		}
 		
 
 
 	}
-	
-
+	circuitFile.close();
 
 	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
 	//readVectorDesc(vecDesc, wires, q);			in class
