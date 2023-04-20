@@ -34,6 +34,16 @@ int main(){
 			ss >> wireNumber;
 			Wire inputWire(-1, wireName, stoi(wireNumber));
 		}
+
+		else if (firstWord != "CIRCUIT") {
+			stringstream ss(currLine);
+			string gateType = firstWord;
+			string gateDelay = "";
+			
+			ss >> gateDelay;
+			ss >> 
+			Gate currGate(gateType, )
+		}
 		
 		
 		
