@@ -129,9 +129,7 @@ int main() {
 		}
 	}
 	
-	circuitFile.close();
-	vectorFile.close();
-	cout << "file closed" << endl;
+	
 
 	while (!vectorFile.eof()) { // parsing vector file
 		getline(vectorFile, currLine);
@@ -162,7 +160,9 @@ int main() {
 			}
 		}
 	}
-
+	circuitFile.close();
+	vectorFile.close();
+	cout << "file closed" << endl;
 	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
 	//readVectorDesc(vecDesc, wires, q);			in class
 	//simulate(gates, wires, q);
