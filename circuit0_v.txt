@@ -1,3 +1,5 @@
-export module $safeitemname$;
-
-export void MyFunc();
+VECTOR SimpleCircuit
+INPUT A  0  0
+INPUT B  0  0
+INPUT A  4  1
+INPUT B  5  1
