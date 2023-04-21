@@ -20,7 +20,21 @@ int main() {
 	vector<Wire*> tempWires;
 	vector<int> wireInts;
 		vecWires.push_back(nullptr);
+	/////////////////////////////////
 	
+	//For everything
+	string firstWord = "";
+	int wireNum = 0;
+
+	//for INPUT / OUTPUT
+	string wireName = "";
+	string wireNumber = "";
+
+	//For Gates
+	string gateDelay = "";
+	string wire = "";
+	int delay = 0;
+	/////////////////////////////////
 	ifstream circuitFile;
 	cout << "Enter circuit description file name" << endl;
 	cin >> fileName;
@@ -37,18 +51,7 @@ int main() {
 	while(!circuitFile.eof()) {
 		getline(circuitFile, currLine);
 		
-		//For everything
-		string firstWord = "";
-		int wireNum = 0;
-
-		//for INPUT / OUTPUT
-		string wireName = "";
-		string wireNumber = "";
-		Wire inputWire(-1, "X", -1);
-		//For Gates
-		string gateDelay = "";
-		string wire = "";
-		int delay = 0;
+		
 
 		stringstream ss(currLine);
 		ss >> firstWord;
@@ -56,18 +59,20 @@ int main() {
 			ss >> wireName;
 			ss >> wireNumber;
 			wireNum = stoi(wireNumber);
-			inputWire.setName(wireName);
-			inputWire.SetValue(-1);
-			inputWire.setIndex(wireNum);
+			/*inputWire->setName(wireName);
+			inputWire->SetValue(-1);
+			inputWire->setIndex(wireNum);
+			*/
+			Wire* inputWire = new Wire(-1, wireName, wireNum);
 		  //Wire inputWire(-1, wireName, wireNum);
 			if (wireNum > vecWires.size()) {    //not initializing with 
 				for (int i = 0; i < wireNum - vecWires.size(); i++) {
 					vecWires.push_back(nullptr);
 				}
 			}
-			Wire* inWire = new Wire();	// just trying stuff here
-			inWire = &inputWire;
-			vecWires.push_back(inWire); // not initializing 3 unique wires, they all have index 3 and no name
+			//Wire* inWire = new Wire();	// just trying stuff here
+			//inWire = &inputWire;
+			vecWires.push_back(inputWire); // not initializing 3 unique wires, they all have index 3 and no name
 		}
 		
 		else if (firstWord != "CIRCUIT") {
