@@ -15,6 +15,7 @@ using namespace std;
 int main() {
 	string currLine = ""; 
 	string fileName = "";
+	string vfileName = "";
 	vector<Wire*> vecWires;
 	vector<Gate*> vecGates;
 	vector<Wire*> tempWires;
@@ -37,6 +38,8 @@ int main() {
 	ifstream circuitFile;
 	cout << "Enter circuit description file name" << endl;
 	cin >> fileName;
+	cout << "Enter vector description file name" << endl;
+	cin >> vfileName;
 	circuitFile.open("circuit"+ fileName + ".txt");  // now you only have to type the number in
 	
 	if (!circuitFile) {
@@ -45,7 +48,7 @@ int main() {
 	else {
 		cout << "file opened" << endl;
 	}
-	while(!circuitFile.eof()) {
+	while(!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
 		stringstream ss(currLine);
 		ss >> firstWord;
