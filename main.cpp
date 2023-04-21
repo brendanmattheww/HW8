@@ -109,7 +109,7 @@ int main() {
 			for (int i = 1; i < wireInts.size(); i++) {
 				if (vecWires.at(wireInts.at(i)) == nullptr) {
 					Wire* newWire = new Wire(-1, "", wireInts.at(i));
-					vecWires.at(i) = newWire;
+					vecWires.at(wireInts.at(i)) = newWire;
 				}
 			}
 			wire1 = vecWires.at(wireInts.at(1));
