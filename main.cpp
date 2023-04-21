@@ -19,7 +19,10 @@ int main() {
 	vector<Gate*> vecGates;
 	vector<Wire*> tempWires;
 	vector<int> wireInts;
-		vecWires.push_back(nullptr);
+
+	Wire inputWire;
+
+	vecWires.push_back(nullptr);
 	
 	ifstream circuitFile;
 	cout << "Enter circuit description file name" << endl;
@@ -44,7 +47,6 @@ int main() {
 		//for INPUT / OUTPUT
 		string wireName = "";
 		string wireNumber = "";
-		Wire inputWire(-1, "X", -1);
 		//For Gates
 		string gateDelay = "";
 		string wire = "";
@@ -67,7 +69,8 @@ int main() {
 			}
 			Wire* inWire = new Wire();	// just trying stuff here
 			inWire = &inputWire;
-			vecWires.push_back(inWire); // not initializing 3 unique wires, they all have index 3 and no name
+			vecWires.push_back(nullptr);
+			vecWires.at(wireNum) = inWire; // not initializing 3 unique wires, they all have index 3 and no name
 		}
 		
 		else if (firstWord != "CIRCUIT") {
