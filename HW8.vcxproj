@@ -139,6 +139,7 @@
     <ClInclude Include="Wire.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\circuit0_v.txt" />
     <Text Include="circuit0.txt" />
     <Text Include="circuit2.txt" />
   </ItemGroup>
