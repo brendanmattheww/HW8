@@ -23,7 +23,7 @@ void printResults(Wire* w, int max) {
 }
 */
 
-circuitFile.open("circuit" + vfileName + ".txt");  // now you only have to type the number in
+/*circuitFile.open("circuit" + vfileName + ".txt");  // now you only have to type the number in
 
 if (!circuitFile) {
 	cerr << "File did not open" << endl;
@@ -32,3 +32,4 @@ else {
 	cout << "file opened" << endl;
 }
 while (!circuitFile.eof()) {)
+*/

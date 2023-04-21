@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ostream>
+//#include <ostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -36,13 +36,15 @@ int main() {
 	int delay = 0;
 	
 	ifstream circuitFile;
+	ifstream vectorFile;
 	cout << "Enter circuit description file name" << endl;
 	cin >> fileName;
 	cout << "Enter vector description file name" << endl;
 	cin >> vfileName;
 	circuitFile.open("circuit"+ fileName + ".txt");  // now you only have to type the number in
-	
-	if (!circuitFile) {
+	vectorFile.open("circuit"+ vfileName + "_v.txt");
+
+	if (!circuitFile || !vectorFile) {
 		cerr << "File did not open" << endl;
 	}
 	else {
