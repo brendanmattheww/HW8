@@ -6,7 +6,7 @@ string vecDesc;  // data types
 string queue;    // 
 
 
-/*bool readCircDesc(string cd, string gates, Wire* w) {		doesn't compile
+/*bool readCircDesc(string cd, string gates, Wire* w) { doesn't compile
 
 }
 
