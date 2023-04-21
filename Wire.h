@@ -6,9 +6,12 @@ class Gate;
 
 class Wire {
 public:
+	Wire();
 	Wire(int v, string n, int ind);
 	void SetValue(int v);
 	void setHistory(int v, int time);
+	void setName(string s);
+	void setIndex(int i);
 	void addGate(Gate* i);
 
 	int GetValue() const;           //{ return value;   }

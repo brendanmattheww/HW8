@@ -42,8 +42,9 @@ int main() {
 		int wireNum = 0;
 
 		//for INPUT / OUTPUT
-		
-
+		string wireName = "";
+		string wireNumber = "";
+		Wire inputWire(-1, "X", -1);
 		//For Gates
 		string gateDelay = "";
 		string wire = "";
@@ -52,20 +53,21 @@ int main() {
 		stringstream ss(currLine);
 		ss >> firstWord;
 		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
-			
-			string wireName = "";
-			string wireNumber = "";
-
 			ss >> wireName;
 			ss >> wireNumber;
 			wireNum = stoi(wireNumber);
-			Wire inputWire(-1, wireName, wireNum);
+			inputWire.setName(wireName);
+			inputWire.SetValue(-1);
+			inputWire.setIndex(wireNum);
+		  //Wire inputWire(-1, wireName, wireNum);
 			if (wireNum > vecWires.size()) {    //not initializing with 
 				for (int i = 0; i < wireNum - vecWires.size(); i++) {
 					vecWires.push_back(nullptr);
 				}
 			}
-			vecWires.push_back(&inputWire); // not initializing 3 unique wires, they all have index 3 and no name
+			Wire* inWire = new Wire();	// just trying stuff here
+			inWire = &inputWire;
+			vecWires.push_back(inWire); // not initializing 3 unique wires, they all have index 3 and no name
 		}
 		
 		else if (firstWord != "CIRCUIT") {
