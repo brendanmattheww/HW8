@@ -19,6 +19,7 @@ int main() {
 	vector<Wire*> vecWires;
 	vector<Gate*> vecGates;
 	vector<Wire*> tempWires;
+	vector<string> vecNames;
 	vector<int> vecTimes;
 	vector<int> vecStates;
 	vector<int> wireInts;
@@ -142,21 +143,22 @@ int main() {
 			t = stoi(wireTime);
 			s = stoi(wireState);
 
-			vecTimes.push_back(t);
-			vecStates.push_back(s);
+			vecNames.push_back(wireName);
 		}
 		if (vectorFile.eof()) {
 			currLine = "";
 			getline(vectorFile, currLine);
 
-			for (int i = 0; i < vecWires.size(); i++) {
+			for (int i = 0; i < vecNames.size(); i++) {
+				if (!(vecWires.at(i) == nullptr)) {				// if vector has a wire at i..
+					currName = vecWires.at(i)->GetName();		// current Name is the name of wire
 
-				if (!(vecWires.at(i) == nullptr)) {
-					if (vecWires.at(i)->GetName() == "A") {
-						vecWires.at(i)->setHistory(vecStates.at(i), vecTimes.at(i));
+
+
+					if (vecWires.at(i)->GetName() == vecNames.at(i)) {
+						vecWires.at(i)->setHistory(s, t);
 					}
 				}
-
 			}
 		}
 	}
