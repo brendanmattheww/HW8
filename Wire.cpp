@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 //default constructor
+Wire::Wire() {
+	name = "";
+	index = 0;
+	value = -1;
+}
 Wire::Wire(int v, string n, int ind) { 
 	value = v;
 	name = n;
@@ -18,7 +23,12 @@ void Wire::setHistory(int v, int time) {                   // appends the incomi
 		history.push_back(v);
 	}
 }
-											
+void Wire::setName(string s) {
+	name = s;
+}
+void Wire::setIndex(int i) {
+	index = i;
+}
 void Wire::addGate(Gate* i) {
 	drives.push_back(i);
 }
