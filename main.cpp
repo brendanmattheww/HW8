@@ -114,7 +114,7 @@ int main() {
 			wire1 = vecWires.at(wireInts.at(1));
 			if (numOfWires == 3) {
 				wire2 = vecWires.at(wireInts.at(2));
-				wire3 = vecWires.at(wireInts.at(3));
+				wire3 = vecWires.at(wireInts.at(3)); 
 			}
 			else {
 				wire2 = nullptr;
