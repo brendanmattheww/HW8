@@ -19,12 +19,18 @@ int main() {
 	vector<Wire*> vecWires;
 	vector<Gate*> vecGates;
 	vector<Wire*> tempWires;
+	vector<int> vecTimes;
+	vector<int> vecStates;
 	vector<int> wireInts;
-		vecWires.push_back(nullptr);
+	
+	vecWires.push_back(nullptr);
 
 	//For everything
 	string firstWord = "";
+	string currName = "";
 	int wireNum = 0;
+	int t = 0; //time
+	int s = 0; //state
 
 	//for INPUT / OUTPUT
 	string wireName = "";
@@ -34,6 +40,10 @@ int main() {
 	string gateDelay = "";
 	string wire = "";
 	int delay = 0;
+
+	//For Logic
+	string wireTime = "";
+	string wireState = "";
 	
 	ifstream circuitFile;
 	ifstream vectorFile;
@@ -93,6 +103,36 @@ int main() {
 	}
 	circuitFile.close();
 	cout << "file closed" << endl;
+
+	while (!vectorFile.eof()) { // parsing vector file
+		getline(vectorFile, currLine);
+		stringstream ss(currLine);
+		ss >> firstWord;
+		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
+			ss >> wireName;
+			ss >> wireTime;
+			ss >> wireState;
+			t = stoi(wireTime);
+			s = stoi(wireState);
+
+			vecTimes.push_back(t);
+			vecStates.push_back(s);
+		}
+		if (vectorFile.eof()) {
+			currLine = "";
+			getline(vectorFile, currLine);
+
+			for (int i = 0; i < vecWires.size(); i++) {
+
+				if (!(vecWires.at(i) == nullptr)) {
+					if (vecWires.at(i)->GetName() == "A") {
+						vecWires.at(i)->setHistory(vecStates.at(i), vecTimes.at(i));
+					}
+				}
+
+			}
+		}
+	}
 
 	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
 	//readVectorDesc(vecDesc, wires, q);			in class
