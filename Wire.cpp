@@ -18,10 +18,12 @@ void Wire::SetValue(int v) {
 	value = v;
 }
 void Wire::setHistory(int v, int time) {                   // appends the incoming string
-										                   // time is the time the value changes
-	for (int i = 0; i < time - history.size(); i++) {      // pushes value for as long as it is the same
-		history.push_back(v);
+	int initHistSize = history.size();
+	for (int i = 0; i < time + 1 - initHistSize; i++) {      // pushes value for as long as it is the same
+			history.push_back(v);
 	}
+										// time is the time the value changes
+	
 }
 void Wire::setName(string s) {
 	name = s;

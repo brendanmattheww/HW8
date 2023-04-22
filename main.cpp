@@ -55,14 +55,14 @@ int main() {
 	cin >> fileName;
 	cout << "Enter vector description file name" << endl;
 	cin >> vfileName;
-	circuitFile.open("circuit"+ fileName + ".txt");  // now you only have to type the number in
+	circuitFile.open("circuit"+ fileName + ".txt");  
 	vectorFile.open("circuit"+ vfileName + "_v.txt");
 
 	if (!circuitFile || !vectorFile) {
 		cerr << "File did not open" << endl;
 	}
 	else {
-		cout << "file opened" << endl;
+		cout << "files opened" << endl;
 	}
 	while(!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
@@ -147,6 +147,7 @@ int main() {
 			vecStates.push_back(s);				// vector of states for loops below
 			vecNames.push_back(wireName);		// vector of names for loops below
 		}
+
 		if (vectorFile.eof()) {
 			currLine = "";
 			getline(vectorFile, currLine);
@@ -163,10 +164,8 @@ int main() {
 																		// current wire name at i
 							vecWires.at(i)->setHistory(vecStates.at(c), vecTimes.at(c)); // set history accordingly
 						}
-
 					}
 				}
-
 			}
 		}
 	}
