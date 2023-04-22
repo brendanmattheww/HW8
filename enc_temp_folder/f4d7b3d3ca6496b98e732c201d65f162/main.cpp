@@ -102,7 +102,9 @@ int main() {
 			for (int i = 0; i < numOfWires; i++) {		// puts the three wires into a vector so they can be used to initialize the gate
 				ss >> wire;
 				wireNum = stoi(wire);
-				wireInts.push_back(wireNum);				
+				wireInts.push_back(wireNum);
+				//Wire* currWire = vecWires.at(wireInts.at(wireNum - 1));
+				//tempWires.push_back(currWire);				
 			}
 			for (int i = 1; i < wireInts.size(); i++) {
 				if (vecWires.at(wireInts.at(i)) == nullptr) {
@@ -128,6 +130,7 @@ int main() {
 		}
 	}
 	
+	
 
 	while (!vectorFile.eof()) { // parsing vector file
 		getline(vectorFile, currLine);
@@ -147,29 +150,32 @@ int main() {
 
 		if (vectorFile.eof()) {
 			currLine = "";
-			getline(vectorFile, currLine);								
+			getline(vectorFile, currLine);
 			
 			for (int i = 0; i < vecWires.size(); i++) {					// iterate through each wire
 				
 				if (vecWires.at(i) != nullptr) {						// first wire is null
 					
 					for (int c = 0; c < vecNames.size(); c++) {			// iterate through wire names in _v.txt file
-						// for each wire
-						currName = vecNames.at(c);
+																		// for each wire
+						currName = vecNames.at(c);					
 
 						if (currName == vecWires.at(i)->GetName()) {	// if the _v.txt wire name is equal to the
-							// current wire name at i
+																		// current wire name at i
 							vecWires.at(i)->setHistory(vecStates.at(c), vecTimes.at(c)); // set history accordingly
 						}
 					}
-				}	///////////////////////////////////////////////////////
-			}		// We also need to set the state of the wires, i don't know how that will work with the history yet
-		}			///////////////////////////////////////////////////////
+				}
+			}
+		}
 	}
 	circuitFile.close();
 	vectorFile.close();
 	cout << "file closed" << endl;
-	
+	//readCircuitDesc(circDesc, gates, wires);    Shomper showed this in his main.cpp file
+	//readVectorDesc(vecDesc, wires, q);			in class
+	//simulate(gates, wires, q);
+	//printResults(wires, maxtime);
 	
 	return 0;
 }
