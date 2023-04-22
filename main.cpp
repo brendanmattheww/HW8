@@ -149,11 +149,11 @@ int main() {
 					wireNum = vecWires.at(i)->GetIndex();
 					Event newEvent(vecWires.at(i), t, s, ++eventCnt);
 					q.push(newEvent);
-				
 				}
 			}
 		}
 	}
+
 	/*
 	while (!vectorFile.eof()) { // parsing vector file
 		getline(vectorFile, currLine);

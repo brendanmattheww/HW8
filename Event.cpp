@@ -7,7 +7,7 @@ Event::Event(Wire* outWire, int t, int state, int cnt) {
 }
 // stop if(!q.empty && time <= 60)
 
-bool operator<(const Event& lhs, const Event& rhs) {
+bool operator<(const Event& lhs, const Event& rhs) {	// sets up priority queue with 2 keys
 	if (lhs.time == rhs.time) {
 		return lhs.count > rhs.count;
 	}
