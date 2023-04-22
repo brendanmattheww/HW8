@@ -143,22 +143,30 @@ int main() {
 			t = stoi(wireTime);
 			s = stoi(wireState);
 
-			vecNames.push_back(wireName);
+			vecTimes.push_back(t);				// vector of times for loops below
+			vecStates.push_back(s);				// vector of states for loops below
+			vecNames.push_back(wireName);		// vector of names for loops below
 		}
 		if (vectorFile.eof()) {
 			currLine = "";
 			getline(vectorFile, currLine);
+			
+			for (int i = 0; i < vecWires.size(); i++) {					// iterate through each wire
+				
+				if (vecWires.at(i) != nullptr) {						// first wire is null
+					
+					for (int c = 0; c < vecNames.size(); c++) {			// iterate through wire names in _v.txt file
+																		// for each wire
+						currName = vecNames.at(c);					
 
-			for (int i = 0; i < vecNames.size(); i++) {
-				if (!(vecWires.at(i) == nullptr)) {				// if vector has a wire at i..
-					currName = vecWires.at(i)->GetName();		// current Name is the name of wire
+						if (currName == vecWires.at(i)->GetName()) {	// if the _v.txt wire name is equal to the
+																		// current wire name at i
+							vecWires.at(i)->setHistory(vecStates.at(c), vecTimes.at(c)); // set history accordingly
+						}
 
-
-
-					if (vecWires.at(i)->GetName() == vecNames.at(i)) {
-						vecWires.at(i)->setHistory(s, t);
 					}
 				}
+
 			}
 		}
 	}
