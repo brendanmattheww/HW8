@@ -1,5 +1,5 @@
 #include <iostream>
-#//include <ostream>
+//#include <ostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -13,7 +13,7 @@
 using namespace std;
 
 int main() {
-	string currLine = ""; 
+	string currLine = "";
 	string fileName = "";
 	string vfileName = "";
 	vector<Wire*> vecWires;
@@ -23,7 +23,7 @@ int main() {
 	vector<int> vecTimes;
 	vector<int> vecStates;
 	vector<int> wireInts;
-	
+	priority_queue<Event> q;
 	vecWires.push_back(nullptr);
 
 	Wire* wire1;
@@ -48,15 +48,17 @@ int main() {
 	//For Logic
 	string wireTime = "";
 	string wireState = "";
-	
+
+	int eventCnt = 0;
+
 	ifstream circuitFile;
 	ifstream vectorFile;
 	cout << "Enter circuit description file name" << endl;
 	cin >> fileName;
 	cout << "Enter vector description file name" << endl;
 	cin >> vfileName;
-	circuitFile.open("circuit"+ fileName + ".txt");  
-	vectorFile.open("circuit"+ vfileName + "_v.txt");
+	circuitFile.open("circuit" + fileName + ".txt");
+	vectorFile.open("circuit" + vfileName + "_v.txt");
 
 	if (!circuitFile || !vectorFile) {
 		cerr << "File did not open" << endl;
@@ -64,7 +66,7 @@ int main() {
 	else {
 		cout << "files opened" << endl;
 	}
-	while(!circuitFile.eof()) { // parsing circuit file
+	while (!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
 		stringstream ss(currLine);
 		ss >> firstWord;
@@ -72,17 +74,17 @@ int main() {
 			ss >> wireName;
 			ss >> wireNumber;
 			wireNum = stoi(wireNumber);
-			
+
 			Wire* inputWire = new Wire(-1, wireName, wireNum);
-		  
-			if (wireNum > vecWires.size()) {    
+
+			if (wireNum > vecWires.size()) {
 				for (int i = 0; i < wireNum - vecWires.size(); i++) {
 					vecWires.push_back(nullptr);
 				}
 			}
-			vecWires.push_back(inputWire); 
+			vecWires.push_back(inputWire);
 		}
-		
+
 		else if (firstWord != "CIRCUIT") {
 			string gateType = firstWord;
 			vector<int> wireInts;
@@ -90,7 +92,7 @@ int main() {
 
 			ss >> gateDelay;
 			delay = stoi(gateDelay.substr(0, gateDelay.length() - 2));
-			
+
 			int numOfWires = 0;
 			if (gateType == "NOT") {
 				numOfWires = 2;
@@ -102,7 +104,8 @@ int main() {
 			for (int i = 0; i < numOfWires; i++) {		// puts the three wires into a vector so they can be used to initialize the gate
 				ss >> wire;
 				wireNum = stoi(wire);
-				wireInts.push_back(wireNum);				
+				wireInts.push_back(wireNum);
+								
 			}
 			for (int i = 1; i < wireInts.size(); i++) {
 				if (vecWires.at(wireInts.at(i)) == nullptr) {
@@ -113,7 +116,7 @@ int main() {
 			wire1 = vecWires.at(wireInts.at(1));
 			if (numOfWires == 3) {
 				wire2 = vecWires.at(wireInts.at(2));
-				wire3 = vecWires.at(wireInts.at(3)); 
+				wire3 = vecWires.at(wireInts.at(3));
 			}
 			else {
 				wire2 = nullptr;
@@ -127,8 +130,31 @@ int main() {
 			}
 		}
 	}
-	
 
+	while (!vectorFile.eof()) {
+		getline(vectorFile, currLine);
+		stringstream ss(currLine);
+		ss >> firstWord;
+
+		if (firstWord == "INPUT") {
+			ss >> wireName;
+			ss >> wireTime;
+			ss >> wireState;
+			t = stoi(wireTime);
+			s = stoi(wireState);
+
+			for (int i = 1; i < vecWires.size(); i++) {
+
+				if (wireName == vecWires.at(i)->GetName()) {
+					wireNum = vecWires.at(i)->GetIndex();
+					Event newEvent(vecWires.at(i), t, s, ++eventCnt);
+					q.push(newEvent);
+				
+				}
+			}
+		}
+	}
+	/*
 	while (!vectorFile.eof()) { // parsing vector file
 		getline(vectorFile, currLine);
 		stringstream ss(currLine);
@@ -147,12 +173,12 @@ int main() {
 
 		if (vectorFile.eof()) {
 			currLine = "";
-			getline(vectorFile, currLine);								
-			
+			getline(vectorFile, currLine);
+
 			for (int i = 0; i < vecWires.size(); i++) {					// iterate through each wire
-				
+
 				if (vecWires.at(i) != nullptr) {						// first wire is null
-					
+
 					for (int c = 0; c < vecNames.size(); c++) {			// iterate through wire names in _v.txt file
 						// for each wire
 						currName = vecNames.at(c);
@@ -162,14 +188,15 @@ int main() {
 							vecWires.at(i)->setHistory(vecStates.at(c), vecTimes.at(c)); // set history accordingly
 						}
 					}
-				}	///////////////////////////////////////////////////////
-			}		// We also need to set the state of the wires, i don't know how that will work with the history yet
-		}			///////////////////////////////////////////////////////
+				}
+			}
+		}
 	}
+	*/
 	circuitFile.close();
 	vectorFile.close();
 	cout << "file closed" << endl;
 	
-	
+
 	return 0;
 }

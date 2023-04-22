@@ -32,3 +32,33 @@ else {
 	cout << "file opened" << endl;
 }
 while (!vectorFile.eof()) {)*/
+
+
+
+
+/*
+while (!vectorFile.eof()) {
+		getline(vectorFile, currLine);
+		stringstream ss(currLine);
+		ss >> firstWord;
+
+		if (firstWord == "INPUT") {
+			ss >> wireName;
+			ss >> wireTime;
+			ss >> wireState;
+			t = stoi(wireTime);
+			s = stoi(wireState);
+
+			for (int i = 1; i < vecWires.size(); i++) {
+
+				if (wireName == vecWires.at(i)->GetName()) {
+					wireNum = vecWires.at(i)->GetIndex();
+					Event newEvent(vecWires.at(i), t, s, eventCnt);
+					q.push(newEvent);
+					eventCnt++;
+				}
+			}
+
+		}
+	}
+*/
