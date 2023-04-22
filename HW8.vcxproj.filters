@@ -46,7 +46,10 @@
     <Text Include="circuit0.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\..\circuit0_v.txt">
+    <Text Include="circuit0_v.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="circuit2.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
