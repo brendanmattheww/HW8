@@ -74,8 +74,8 @@ int NOTLogic(int inVal) {
 	return -1;
 }
 
-Wire* Gate::Evaluate(int time) const {
-	//Wire* out = nullptr;					  // makes wire named out
+int Gate::Evaluate(int time) const {   //changed this to return int, may not be right.
+	int out = 0;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
 	int inVal2 = in2->GetValue();
@@ -107,9 +107,9 @@ Wire* Gate::Evaluate(int time) const {
 	}
 	
 	// sets wire members
-	out->SetValue(outVal);
-
-	if (outVal == 1) {
+	//out->SetValue(outVal);
+	out = outVal;
+	/*if (outVal == 1) {
 		out->setHistory(1, time);
 	}
 	else if (outVal == 0) {
@@ -118,7 +118,7 @@ Wire* Gate::Evaluate(int time) const {
 	else {
 		out->setHistory(-1, time);
 	}
-	
+	*/
 	return out;
 }
 

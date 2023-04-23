@@ -8,12 +8,15 @@ using namespace std;
 
 class Event {
 public:
-	Event(Wire* outWire, int t, int state, int cnt);
+	Event(Wire* w, int t, int s, int cnt);
+	Wire* getWire() const;
+	int getState() const;
+	int getTime() const;
 private:
-	int time = 0;		 // time ns
-	int count = 0;		 // count
-	int oVal = -1;		 // output state
-	int wireNum = 0;					
+	Wire* eWire = nullptr;   //for event wire
+	int time = 0;			 // time ns
+	int count = 0;			 // Event number	 
+	int state = 0;			 // state at Event
 
 	friend bool operator<(const Event& lhs, const Event& rhs);
 };

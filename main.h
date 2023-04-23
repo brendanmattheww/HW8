@@ -7,7 +7,7 @@ string queue;    //
 
 
 bool readCircDesc(string cd, string gates, Wire* w) { 
-	
+	return false;
 }
 
 /*bool readVecDesc(string vd, Wire* w, string q) {

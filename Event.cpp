@@ -1,9 +1,9 @@
 #include "Event.h"
-Event::Event(Wire* outWire, int t, int state, int cnt) {
+Event::Event(Wire* w, int t, int s, int cnt) {
 	time = t;
 	count = cnt;
-	oVal = outWire->GetValue();
-	wireNum = outWire->GetIndex();
+	state = s;
+	eWire = w;
 }
 // stop if(!q.empty && time <= 60)
 
@@ -14,3 +14,14 @@ bool operator<(const Event& lhs, const Event& rhs) {	// sets up priority queue w
 	return lhs.time > rhs.time;
  }
 
+Wire* Event::getWire() const {
+	return eWire;
+}
+
+int Event::getState() const {
+	return state;
+}
+
+int Event::getTime() const {
+	return time;
+}

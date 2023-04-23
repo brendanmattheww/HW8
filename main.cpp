@@ -131,7 +131,7 @@ int main() {
 		}
 	}
 
-	while (!vectorFile.eof()) {
+	while (!vectorFile.eof()) {  // creates initial events from vector file
 		getline(vectorFile, currLine);
 		stringstream ss(currLine);
 		ss >> firstWord;
@@ -152,47 +152,32 @@ int main() {
 				}
 			}
 		}
-	}
+	}  
+	
+	while (!q.empty() && t <= 60) {				//goes through the queue until there are no more events
+		Event currEvent = q.top();				// gets top event
+		int currState  = currEvent.getState();	//setting some variables for easier to read code later on 
+		int currTime   = currEvent.getTime();
+		Wire* currWire = currEvent.getWire();
+		
+		currWire->SetValue(currState);              // sets value of the wire
+		currWire->setHistory(currState, currTime);	// adds to history
 
-	/*
-	while (!vectorFile.eof()) { // parsing vector file
-		getline(vectorFile, currLine);
-		stringstream ss(currLine);
-		ss >> firstWord;
-		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
-			ss >> wireName;
-			ss >> wireTime;
-			ss >> wireState;
-			t = stoi(wireTime);
-			s = stoi(wireState);
-
-			vecTimes.push_back(t);				// vector of times for loops below
-			vecStates.push_back(s);				// vector of states for loops below
-			vecNames.push_back(wireName);		// vector of names for loops below
-		}
-
-		if (vectorFile.eof()) {
-			currLine = "";
-			getline(vectorFile, currLine);
-
-			for (int i = 0; i < vecWires.size(); i++) {					// iterate through each wire
-
-				if (vecWires.at(i) != nullptr) {						// first wire is null
-
-					for (int c = 0; c < vecNames.size(); c++) {			// iterate through wire names in _v.txt file
-						// for each wire
-						currName = vecNames.at(c);
-
-						if (currName == vecWires.at(i)->GetName()) {	// if the _v.txt wire name is equal to the
-							// current wire name at i
-							vecWires.at(i)->setHistory(vecStates.at(c), vecTimes.at(c)); // set history accordingly
-						}
-					}
-				}
+		//for (int i = 0; i < currWire->GetGates().size(); i++) { // need to implement for wires driving multiple gates
+		if (currWire->GetGates().size() != 0) {
+			Gate* gateDriven = currWire->GetGates().at(0);
+			int newTime = currTime + gateDriven->getDelay();
+			int newOutVal = gateDriven->Evaluate(newTime);
+			if (gateDriven->getOutput()->GetValue() != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
+				q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
 			}
-		}
+		}																
+
+		//}
+		q.pop();
 	}
-	*/
+
+
 	circuitFile.close();
 	vectorFile.close();
 	cout << "file closed" << endl;

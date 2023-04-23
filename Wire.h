@@ -16,7 +16,7 @@ public:
 
 	int GetValue() const;           //{ return value;   }
 	string GetName() const;         //{ return name;    }
-	vector<Gate*> GetGate() const;  //{ return drives;  }
+	vector<Gate*> GetGates() const;  //{ return drives; }
 	int GetIndex() const;           //{ return index;   }
 	vector<int> GetHistory() const; //{ return history; }
 

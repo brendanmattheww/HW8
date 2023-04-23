@@ -19,10 +19,20 @@ void Wire::SetValue(int v) {
 }
 void Wire::setHistory(int v, int time) {                   // appends the incoming string
 	int initHistSize = history.size();
-	for (int i = 0; i < time + 1 - initHistSize; i++) {      // pushes value for as long as it is the same
-			history.push_back(v);
+	int prevVal = 0;
+	if (initHistSize == 0) {
+		for (int i = 0; i < time - initHistSize; i++) {
+			history.push_back(-1);				// pushes previous value for as long as it needs
+		}
 	}
-										// time is the time the value changes
+	else  {
+		prevVal = history.back();
+	}
+	
+	for (int i = 0; i < time - initHistSize; i++) {      
+			history.push_back(prevVal);				// pushes previous value for as long as it needs
+	}
+	history.push_back(v);							//pushes new value in
 	
 }
 void Wire::setName(string s) {
@@ -59,7 +69,7 @@ string Wire::GetName() const {
 	return name;    
 }
 
-vector<Gate*> Wire::GetGate() const { 
+vector<Gate*> Wire::GetGates() const { 
 	return drives;  
 }
 
