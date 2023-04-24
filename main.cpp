@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <ostream>
+#include <ostream>
 #include <fstream>
 #include <vector>
 #include <string>
