@@ -181,16 +181,26 @@ int main() {
 		currWire->SetValue(currState);              // sets value of the wire
 		currWire->setHistory(currState, currTime);	// adds to history
 
-		//for (int i = 0; i < currWire->GetGates().size(); i++) { // need to implement for wires driving multiple gates
-		if (currWire->GetGates().size() != 0) {
-			int newTime = currTime + gateDriven->getDelay();
-			maxTime = newTime;
-			int newOutVal = gateDriven->Evaluate();
-			if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
-				q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+		for (int i = 0; i < currWire->GetGates().size(); i++) { // need to implement for wires driving multiple gates
+			int newTime = 0;
+			int newOutVal = 0;
+			vector<Gate*> gate = currWire->GetGates();
+
+			if (gate.at(i) != nullptr) {
+				if (currWire->GetGates().size() != 0) {
+					if (currWire->GetGates().size() > 1) {
+						gateDriven = gate.at(i);
+					}
+					newTime = currTime + gateDriven->getDelay();
+					maxTime = newTime;
+					newOutVal = gateDriven->Evaluate();
+				}
+
+				if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
+					q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+				}
 			}
 		}
-
 
 		//}
 		q.pop();
