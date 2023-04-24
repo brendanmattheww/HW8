@@ -77,8 +77,12 @@ int NOTLogic(int inVal) {
 int Gate::Evaluate(int time) const {   //changed this to return int, may not be right.
 	int out = 0;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
-	int inVal1 = in1->GetValue(); // puts wire values into integers for simplicity
-	int inVal2 = in2->GetValue();
+	int inVal1 = in1->GetValue();
+	int inVal2 = 0;				 // puts wire values into integers for simplicity
+	if (in2 != nullptr) {
+		inVal2 = in2->GetValue();
+	}
+	
 
 	vector<int> high;
 	vector<int> low;

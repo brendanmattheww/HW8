@@ -20,7 +20,7 @@ void Wire::SetValue(int v) {
 void Wire::setHistory(int v, int time) {                   // appends the incoming string
 	int initHistSize = history.size();
 	int prevVal = 0;
-	if (initHistSize == 0) {
+	if (initHistSize == 0) {					// sets value to unkown if necessary
 		for (int i = 0; i < time - initHistSize; i++) {
 			history.push_back(-1);				// pushes previous value for as long as it needs
 		}

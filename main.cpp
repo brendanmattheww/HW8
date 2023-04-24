@@ -49,14 +49,16 @@ int main() {
 	string wireTime = "";
 	string wireState = "";
 
+	//For print
+	int maxTime = 0;
 	int eventCnt = 0;
 
 	ifstream circuitFile;
 	ifstream vectorFile;
-	cout << "Enter circuit description file name" << endl;
+	cout << "Enter circuit number" << endl;
 	cin >> fileName;
-	cout << "Enter vector description file name" << endl;
-	cin >> vfileName;
+	
+	vfileName = fileName;
 	circuitFile.open("circuit" + fileName + ".txt");
 	vectorFile.open("circuit" + vfileName + "_v.txt");
 
@@ -159,7 +161,6 @@ int main() {
 		int currState  = currEvent.getState();	//setting some variables for easier to read code later on 
 		int currTime   = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
-		
 		currWire->SetValue(currState);              // sets value of the wire
 		currWire->setHistory(currState, currTime);	// adds to history
 
@@ -167,6 +168,7 @@ int main() {
 		if (currWire->GetGates().size() != 0) {
 			Gate* gateDriven = currWire->GetGates().at(0);
 			int newTime = currTime + gateDriven->getDelay();
+			maxTime = newTime;
 			int newOutVal = gateDriven->Evaluate(newTime);
 			if (gateDriven->getOutput()->GetValue() != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
 				q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
@@ -176,11 +178,14 @@ int main() {
 		//}
 		q.pop();
 	}
+	
+		printResults(vecWires, maxTime);
 
+	
 
 	circuitFile.close();
 	vectorFile.close();
-	cout << "file closed" << endl;
+	
 	
 
 	return 0;

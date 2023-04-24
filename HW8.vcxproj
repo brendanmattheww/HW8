@@ -143,6 +143,8 @@
     <Text Include="circuit0_v.txt" />
     <Text Include="circuit2.txt" />
     <Text Include="circuit2_v.txt" />
+    <Text Include="circuit4.txt" />
+    <Text Include="circuit4_v.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -55,5 +55,11 @@
     <Text Include="circuit2_v.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="circuit4.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="circuit4_v.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
