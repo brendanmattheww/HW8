@@ -2,6 +2,7 @@ CIRCUIT MultiGate
 INPUT   A    1
 INPUT   B    3
 INPUT   C    4
+OUTPUT  D    5
 OUTPUT  E    6
 NOT     2ns  1   2
 AND     3ns  2   3   5

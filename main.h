@@ -48,7 +48,6 @@ void printResults(vector<Wire*> allWires, int max) {
 						cout << "_";
 					}
 				}
-					
 			}
 			cout << endl;
 		}
