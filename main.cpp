@@ -81,9 +81,6 @@ int main() {
 		stringstream ss(currLine);
 		ss >> firstWord;
 		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
-			if (firstWord == "OUTPUT") {
-				cout << "hi" << endl;
-			}
 			ss >> wireName;
 			ss >> wireNumber;
 			wireNum = stoi(wireNumber);
@@ -113,10 +110,6 @@ int main() {
 			}
 			else {
 				numOfWires = 3;
-			}
-
-			if (gateType == "OR") {
-				cout << "hi" << endl;
 			}
 			for (int i = 0; i < numOfWires; i++) {		// puts the three wires into a vector so they can be used to initialize the gate
 				ss >> wire;
