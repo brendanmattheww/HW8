@@ -45,9 +45,13 @@ int main() {
 	string wire = "";
 	int delay = 0;
 
-	//For Logic
+	//For vector reading
 	string wireTime = "";
 	string wireState = "";
+
+	// for simulation
+	int currOutVal = 0;
+	Gate* gateDriven = nullptr;
 
 	//For print
 	int maxTime = 0;
@@ -163,20 +167,22 @@ int main() {
 		}
 	}  
 	
-	while(!q.empty() && t <= 60) {				//goes through the queue until there are no more events
+	while (!q.empty() && t <= 60) {				//goes through the queue until there are no more events
 		Event currEvent = q.top();
 		// gets top event
-		int currState  = currEvent.getState();	//setting some variables for easier to read code later on 
-		int currTime   = currEvent.getTime();
+		int currState = currEvent.getState();	//setting some variables for easier to read code later on 
+		int currTime = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
-		Gate* gateDriven = currWire->GetGates().at(0);
-		int currOutVal = gateDriven->Evaluate();
+		
+		if (currWire->GetGates().size() != 0) {
+			gateDriven = currWire->GetGates().at(0);
+			currOutVal = gateDriven->Evaluate();
+		}
 		currWire->SetValue(currState);              // sets value of the wire
 		currWire->setHistory(currState, currTime);	// adds to history
 
 		//for (int i = 0; i < currWire->GetGates().size(); i++) { // need to implement for wires driving multiple gates
 		if (currWire->GetGates().size() != 0) {
-			
 			int newTime = currTime + gateDriven->getDelay();
 			maxTime = newTime;
 			int newOutVal = gateDriven->Evaluate();
