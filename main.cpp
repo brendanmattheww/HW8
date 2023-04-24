@@ -154,7 +154,13 @@ int main() {
 			ss >> wireTime;
 			ss >> wireState;
 			t = stoi(wireTime);
-			s = stoi(wireState);
+
+			if (wireState == "X") { // check for unknown input states
+				s = -1;
+			}
+			else {
+				s = stoi(wireState);
+			}
 
 			for (int i = 1; i < vecWires.size(); i++) {
 				if (vecWires.at(i) != nullptr) {
