@@ -133,6 +133,11 @@ int main() {
 				wire3 = vecWires.at(wireInts.at(2));
 			}
 			Gate* currGate = new Gate(gateType, delay, wire1, wire2, wire3);
+
+			if (wire2->GetHistory() == wire1->GetHistory()) {
+				wire1->SetValue(wire2->GetValue());
+			}
+
 			vecGates.push_back(currGate);
 			wire1->addGate(currGate);	// Tells the wires which gate they are 
 			if (numOfWires == 3) {
