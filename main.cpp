@@ -173,7 +173,7 @@ int main() {
 		int currState = currEvent.getState();	//setting some variables for easier to read code later on 
 		int currTime = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
-		
+		maxTime = currTime;
 		if (currWire->GetGates().size() != 0) {
 			gateDriven = currWire->GetGates().at(0);
 			currOutVal = gateDriven->Evaluate();
@@ -192,7 +192,6 @@ int main() {
 						gateDriven = gate.at(i);
 					}
 					newTime = currTime + gateDriven->getDelay();
-					maxTime = newTime;
 					newOutVal = gateDriven->Evaluate();
 				}
 
