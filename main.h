@@ -22,7 +22,8 @@ int simulate(string gates, Wire* w, string q) {
 void printResults(vector<Wire*> allWires, int max) {
 	int num = allWires.size();
 	for (int i = 1; i < num; i++) {
-		if (allWires.at(i)->GetName() != "" || allWires.at(i) == nullptr) {
+		if (allWires.at(i) != nullptr) {
+			if (allWires.at(i)->GetName() != "") {
 			vector<int> histVec = allWires.at(i)->GetHistory();
 			cout << allWires.at(i)->GetName() << ": ";
 			for (int j = 0; j < histVec.size(); j++) {
@@ -50,6 +51,7 @@ void printResults(vector<Wire*> allWires, int max) {
 				}
 			}
 			cout << endl;
+			}
 		}
 	}
 	cout << "   ";
