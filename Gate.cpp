@@ -74,7 +74,7 @@ int NOTLogic(int inVal) {
 	return -1;
 }
 
-int Gate::Evaluate(int time) const {   //changed this to return int, may not be right.
+int Gate::Evaluate() const {   //changed this to return int, may not be right.
 	int out = 0;					  // makes wire named out
 	int outVal = -1;			  // 1 = high;  0 = low;  -1 = unknown
 	int inVal1 = in1->GetValue();
