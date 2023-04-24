@@ -70,6 +70,9 @@ int main() {
 	}
 	while (!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
+		if (currLine == "") {
+			break;
+		}
 		stringstream ss(currLine);
 		ss >> firstWord;
 		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
@@ -135,6 +138,9 @@ int main() {
 
 	while (!vectorFile.eof()) {  // creates initial events from vector file
 		getline(vectorFile, currLine);
+		if (currLine == "") {
+			break;
+		}
 		stringstream ss(currLine);
 		ss >> firstWord;
 
@@ -146,17 +152,18 @@ int main() {
 			s = stoi(wireState);
 
 			for (int i = 1; i < vecWires.size(); i++) {
-
-				if (wireName == vecWires.at(i)->GetName()) {
-					wireNum = vecWires.at(i)->GetIndex();
-					Event newEvent(vecWires.at(i), t, s, ++eventCnt);
-					q.push(newEvent);
+				if (vecWires.at(i) != nullptr) {
+					if (wireName == vecWires.at(i)->GetName()) {
+						wireNum = vecWires.at(i)->GetIndex();
+						Event newEvent(vecWires.at(i), t, s, ++eventCnt);
+						q.push(newEvent);
+					}
 				}
 			}
 		}
 	}  
 	
-	while (!q.empty() && t <= 60) {				//goes through the queue until there are no more events
+	while(!q.empty() && t <= 60) {				//goes through the queue until there are no more events
 		Event currEvent = q.top();				// gets top event
 		int currState  = currEvent.getState();	//setting some variables for easier to read code later on 
 		int currTime   = currEvent.getTime();
