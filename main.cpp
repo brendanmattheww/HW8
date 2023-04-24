@@ -168,7 +168,7 @@ int main() {
 		}
 	}  
 	
-	while (!q.empty() && currTime <= 60) {				//goes through the queue until there are no more events
+	while (!q.empty() && currTime < 60) {				//goes through the queue until there are no more events
 		Event currEvent = q.top();
 		// gets top event
 		int currState = currEvent.getState();	//setting some variables for easier to read code later on 

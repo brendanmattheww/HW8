@@ -18,8 +18,12 @@ void Wire::SetValue(int v) {
 	value = v;
 }
 void Wire::setHistory(int v, int time) {                   // appends the incoming string
+	
 	int initHistSize = history.size();
 	int prevVal = 0;
+	if (history.size() -1 == time) {
+		history.back() = v;
+	}
 	if (initHistSize == 0) {					// sets value to unkown if necessary
 		for (int i = 0; i < time - initHistSize; i++) {
 			history.push_back(-1);						// pushes previous value for as long as it needs
@@ -32,8 +36,8 @@ void Wire::setHistory(int v, int time) {                   // appends the incomi
 	for (int i = 0; i < time - secHistSize; i++) {      
 			history.push_back(prevVal);				// pushes previous value for as long as it needs
 	}
-	history.push_back(v);							//pushes new value in
 	
+	history.push_back(v);							//pushes new value in
 }
 void Wire::setName(string s) {
 	name = s;
