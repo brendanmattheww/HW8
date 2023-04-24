@@ -52,6 +52,7 @@ int main() {
 	// for simulation
 	int currOutVal = 0;
 	Gate* gateDriven = nullptr;
+	int currTime = 0;
 
 	//For print
 	int maxTime = 0;
@@ -159,7 +160,7 @@ int main() {
 				if (vecWires.at(i) != nullptr) {
 					if (wireName == vecWires.at(i)->GetName()) {
 						wireNum = vecWires.at(i)->GetIndex();
-						Event newEvent(vecWires.at(i), t, s, ++eventCnt);
+						Event newEvent(vecWires.at(i), t, s, eventCnt++);
 						q.push(newEvent);
 					}
 				}
@@ -167,13 +168,13 @@ int main() {
 		}
 	}  
 	
-	while (!q.empty() && t <= 60) {				//goes through the queue until there are no more events
+	while (!q.empty() && currTime <= 60) {				//goes through the queue until there are no more events
 		Event currEvent = q.top();
 		// gets top event
 		int currState = currEvent.getState();	//setting some variables for easier to read code later on 
-		int currTime = currEvent.getTime();
+		currTime = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
-		
+		maxTime = currTime;
 		if (currWire->GetGates().size() != 0) {
 			gateDriven = currWire->GetGates().at(0);
 			currOutVal = gateDriven->Evaluate();
@@ -184,10 +185,10 @@ int main() {
 		//for (int i = 0; i < currWire->GetGates().size(); i++) { // need to implement for wires driving multiple gates
 		if (currWire->GetGates().size() != 0) {
 			int newTime = currTime + gateDriven->getDelay();
-			maxTime = newTime;
+			//maxTime = newTime;
 			int newOutVal = gateDriven->Evaluate();
 			if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
-				q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+				q.push(Event(gateDriven->getOutput(), newTime, newOutVal, eventCnt++)); //push a new event into the queue
 			}
 		}
 

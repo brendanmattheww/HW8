@@ -57,8 +57,11 @@ void printResults(vector<Wire*> allWires, int max) {
 	cout << "   ";
 	for (int i = 0; i <= max; i++) {
 		
-		if (i % 5 == 0) {
-			cout << i;
+		if (i % 10 == 0) {
+			cout << "0";
+		}
+		else if (i % 5 == 0) {
+			cout << "5";
 		}
 		else {
 			cout << "-";
