@@ -24,33 +24,33 @@ void printResults(vector<Wire*> allWires, int max) {
 	for (int i = 1; i < num; i++) {
 		if (allWires.at(i) != nullptr) {
 			if (allWires.at(i)->GetName() != "") {
-			vector<int> histVec = allWires.at(i)->GetHistory();
-			cout << allWires.at(i)->GetName() << ": ";
-			for (int j = 0; j < histVec.size(); j++) {
-				if (histVec.at(j) == -1) {
-					cout << "x";
-				}
-				else if (histVec.at(j) == 1) {
-					cout << "-";
-				}
-				else {
-					cout << "_";
-				}
-			}
-			if (histVec.size() < max) {
-				for (int i = histVec.size(); i <= max; i++) {
-					if (histVec.back() == -1) {
+				vector<int> histVec = allWires.at(i)->GetHistory();
+				cout << allWires.at(i)->GetName() << ": ";
+				for (int j = 0; j < histVec.size(); j++) {
+					if (histVec.at(j) == -1) {
 						cout << "x";
 					}
-					else if (histVec.back() == 1) {
+					else if (histVec.at(j) == 1) {
 						cout << "-";
 					}
 					else {
 						cout << "_";
 					}
 				}
-			}
-			cout << endl;
+				if (histVec.size() < max) {
+					for (int i = histVec.size(); i <= max; i++) {
+						if (histVec.back() == -1) {
+							cout << "x";
+						}
+						else if (histVec.back() == 1) {
+							cout << "-";
+						}
+						else {
+							cout << "_";
+						}
+					}
+				}
+				cout << endl;
 			}
 		}
 	}
