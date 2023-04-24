@@ -21,11 +21,12 @@ void Wire::setHistory(int v, int time) {                   // appends the incomi
 	
 	int initHistSize = history.size();
 	int prevVal = 0;
-	if (history.size() -1 == time) {
+	if (history.size() - 1 == time) {
 		history.back() = v;
+		return;
 	}
 	if (initHistSize == 0) {					// sets value to unkown if necessary
-		for (int i = 0; i < time - initHistSize; i++) {
+		for (int i = 0; i < time; i++) {
 			history.push_back(-1);						// pushes previous value for as long as it needs
 		}
 	}
