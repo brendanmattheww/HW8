@@ -175,6 +175,7 @@ int main() {
 		currTime = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
 		maxTime = currTime;
+
 		if (currWire->GetGates().size() != 0) {
 			gateDriven = currWire->GetGates().at(0);
 			currOutVal = gateDriven->Evaluate();
