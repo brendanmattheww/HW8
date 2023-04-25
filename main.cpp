@@ -118,9 +118,14 @@ int main() {
 								
 			}
 			for (int i = 1; i < wireInts.size(); i++) {
-				if (vecWires.at(wireInts.at(i)) == nullptr) {
+				if ((vecWires.size() == wireInts.at(i)) || vecWires.at(wireInts.at(i)) == nullptr) {
 					Wire* newWire = new Wire(-1, "", wireInts.at(i));
-					vecWires.at(wireInts.at(i)) = newWire;
+					if (vecWires.size() == wireInts.at(i)) {
+						vecWires.push_back(newWire);
+					}
+					else {
+						vecWires.at(wireInts.at(i)) = newWire;
+					}
 				}
 			}
 			wire1 = vecWires.at(wireInts.at(1));
@@ -201,7 +206,9 @@ int main() {
 					newTime = currTime + gateDriven->getDelay();
 					newOutVal = gateDriven->Evaluate();
 				}
-
+				if (currTime == 58) {
+					int i = 0;
+				}
 				if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
 					q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
 				}
