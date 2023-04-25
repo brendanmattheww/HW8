@@ -64,8 +64,8 @@ int main() {
 	cin >> fileName;
 	
 	vfileName = fileName;
-	circuitFile.open("circuit" + fileName + ".txt");
-	vectorFile.open("circuit" + vfileName + "_v.txt");
+	circuitFile.open(fileName + ".txt");
+	vectorFile.open(vfileName + "_v.txt");
 
 	if (!circuitFile || !vectorFile) {
 		cerr << "File did not open" << endl;
