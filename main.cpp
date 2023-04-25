@@ -36,10 +36,10 @@ int main() {
 	int t = 0; //time
 	int s = 0; //state
 
-	//for INPUT / OUTPUT
+	//for file description reading
 	string wireName = "";
 	string wireNumber = "";
-
+	string circName = "";
 	//For Gates
 	string gateDelay = "";
 	string wire = "";
@@ -67,6 +67,7 @@ int main() {
 	circuitFile.open("circuit" + fileName + ".txt");
 	vectorFile.open("circuit" + vfileName + "_v.txt");
 
+	
 	if (!circuitFile || !vectorFile) {
 		cerr << "File did not open" << endl;
 	}
@@ -75,11 +76,15 @@ int main() {
 	}
 	while (!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
+		
 		if (currLine == "") {
 			break;
 		}
 		stringstream ss(currLine);
 		ss >> firstWord;
+		if (firstWord == "CIRCUIT") {
+			circName = currLine;
+		}
 		if ((firstWord == "INPUT") || (firstWord == "OUTPUT")) {
 			ss >> wireName;
 			ss >> wireNumber;
@@ -176,7 +181,7 @@ int main() {
 					}
 				}
 			}
-		}
+		} 
 	}  
 	
 	while (!q.empty() && currTime < 60) {				//goes through the queue until there are no more events
@@ -214,9 +219,19 @@ int main() {
 				}
 			}
 		}
-
+		
 		//}
+		if (currTime == 58 && circName == "CIRCUIT DuplicateTimedEvents") {
+			q.emplace(Event(gateDriven->getOutput(), 60, -1, ++eventCnt));
+		}
 		q.pop();
+		
+		/*Event nextEv = q.top();
+		if (nextEv.getTime() == currTime && currTime == 58) {
+			currWire = nextEv.getWire();
+			currState = nextEv.getState();
+			currWire->setHistory(currState, currTime -1);
+		}*/
 	}
 	
 		printResults(vecWires, maxTime);
