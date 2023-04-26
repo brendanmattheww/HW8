@@ -101,10 +101,10 @@ int Gate::Evaluate() const {   //changed this to return int, may not be right.
 		outVal = NOTLogic(ORLogic(inVal1, inVal2));
 	}
 	else if (type == "XOR") {
-		outVal = XORLogic(inVal2, inVal2);
+		outVal = XORLogic(inVal1, inVal2);
 	}
 	else if (type == "XNOR") {
-		outVal = NOTLogic(XORLogic(inVal2, inVal2));
+		outVal = NOTLogic(XORLogic(inVal1, inVal2));
 	}
 	else if (type == "NOT") {
 		outVal = NOTLogic(inVal1); // Just takes in in1

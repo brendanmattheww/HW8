@@ -51,6 +51,7 @@ int main() {
 
 	// for simulation
 	int currOutVal = 0;
+	int currOutVal2 = 0;
 	Gate* gateDriven = nullptr;
 	int currTime = 0;
 
@@ -64,8 +65,8 @@ int main() {
 	cin >> fileName;
 	
 	vfileName = fileName;
-	circuitFile.open("circuit" + fileName + ".txt");
-	vectorFile.open("circuit" + vfileName + "_v.txt");
+	circuitFile.open(fileName + ".txt");
+	vectorFile.open(vfileName + "_v.txt");
 
 	
 	if (!circuitFile || !vectorFile) {
@@ -184,16 +185,26 @@ int main() {
 		} 
 	}  
 	
-	while (!q.empty() && currTime < 60) {				//goes through the queue until there are no more events
+	while (!q.empty() && currTime < 60) {		//goes through the queue until there are no more events
 		Event currEvent = q.top();
 		// gets top event
 		int currState = currEvent.getState();	//setting some variables for easier to read code later on 
 		currTime = currEvent.getTime();
 		Wire* currWire = currEvent.getWire();
 		maxTime = currTime;
+		if (eventCnt == 12) {
+			int z = 0;
+		}
 		if (currWire->GetGates().size() != 0) {
-			gateDriven = currWire->GetGates().at(0);
-			currOutVal = gateDriven->Evaluate();
+			for (int i = 0; i < currWire->GetGates().size(); i++) {
+				gateDriven = currWire->GetGates().at(i);
+				if (i == 1) {
+					currOutVal2 = gateDriven->Evaluate();
+				}
+				else if (i == 0) {
+					currOutVal = gateDriven->Evaluate();
+				}
+			}
 		}
 		currWire->SetValue(currState);              // sets value of the wire
 		currWire->setHistory(currState, currTime);	// adds to history
@@ -211,16 +222,21 @@ int main() {
 					newTime = currTime + gateDriven->getDelay();
 					newOutVal = gateDriven->Evaluate();
 				}
-				if (currTime == 58) {
-					int i = 0;
+				
+				if (i == 0) {
+					if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
+						q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+					}
 				}
-				if (currOutVal != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
-					q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+				else if (i == 1) {
+					if (currOutVal2 != newOutVal) {		// if the output wire of the gate does not have the same value as the new output value
+						q.push(Event(gateDriven->getOutput(), newTime, newOutVal, ++eventCnt)); //push a new event into the queue
+					}
 				}
 			}
 		}
 		
-		//}
+		
 		if (currTime == 58 && circName == "CIRCUIT DuplicateTimedEvents") {
 			q.emplace(Event(gateDriven->getOutput(), 60, -1, ++eventCnt));
 		}
