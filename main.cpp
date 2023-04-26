@@ -61,7 +61,7 @@ int main() {
 
 	ifstream circuitFile;
 	ifstream vectorFile;
-	cout << "Enter circuit number" << endl;
+	cout << "Enter base file name" << endl;
 	cin >> fileName;
 	
 	vfileName = fileName;
@@ -77,7 +77,6 @@ int main() {
 	}
 	while (!circuitFile.eof()) { // parsing circuit file
 		getline(circuitFile, currLine);
-		
 		if (currLine == "") {
 			break;
 		}
@@ -242,12 +241,7 @@ int main() {
 		}
 		q.pop();
 		
-		/*Event nextEv = q.top();
-		if (nextEv.getTime() == currTime && currTime == 58) {
-			currWire = nextEv.getWire();
-			currState = nextEv.getState();
-			currWire->setHistory(currState, currTime -1);
-		}*/
+		
 	}
 	
 		printResults(vecWires, maxTime);

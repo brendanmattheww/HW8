@@ -6,7 +6,8 @@ string vecDesc;  // data types
 string queue;    // 
 
 
-bool readCircDesc(string cd, string gates, Wire* w) { 
+bool readCircDesc(string cd) { 
+	
 	return false;
 }
 
